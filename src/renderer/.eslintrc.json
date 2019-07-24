@@ -1,0 +1,41 @@
+{
+	"env": {
+		"es6": true,
+		"browser": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"idiomatic"
+	],
+	"globals": {
+		"Atomics": "readonly",
+		"SharedArrayBuffer": "readonly",
+		"angular": "readonly",
+		"mime": "readonly",
+		"electron": "readonly",
+		"path": "readonly",
+		"EventEmitter": "readonly"
+	},
+	"parserOptions": {
+		"ecmaVersion": 2018
+	},
+	"rules": {
+		"indent": [
+			"error",
+			"tab"
+		],
+		"linebreak-style": [
+			"error",
+			"unix"
+		],
+		"quotes": [
+			"error",
+			"single"
+		],
+		"semi": [
+			"error",
+			"always"
+		],
+		"no-console": "warn"
+	}
+}

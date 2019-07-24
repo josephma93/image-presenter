@@ -1,0 +1,50 @@
+<h1 class="panel-title">Controls</h1>
+<form action="">
+	<fieldset>
+		<legend>Projection</legend>
+		<!-- <h3>Projection</h3> -->
+		<div>
+			<label for="isProjectionEnabled">Enable projection</label>
+			<span class="toggle-box">
+				<input
+					id="isProjectionEnabled"
+					type="checkbox"
+					data-ng-model="$ctrl.isProjectionEnabled"
+					data-ng-change="$ctrl.toggleProjection()"
+				/>
+				<span class="slider"></span>
+			</span>
+		</div>
+	</fieldset>
+	<fieldset data-ng-disabled="$ctrl.ctrlPnlSvcData.imageProjected === null">
+		<legend>Images</legend>
+		<div>
+			<label>
+				Image fit
+				<select
+					data-ng-model="$ctrl.ctrlPnlSvcData.imageProjected.objectFit"
+					data-ng-options="fitOption.value as fitOption.label for fitOption in $ctrl.objectFitOptions"
+				></select>
+			</label>
+		</div>
+		<div>
+			<label>
+				Image position
+				<select
+					data-ng-model="$ctrl.objectFitPreset"
+					data-ng-options="preset.value as preset.label for preset in $ctrl.positionPresets"
+					data-ng-change="$ctrl.imagePositionPresetChanged()"
+				></select>
+			</label>
+		</div>
+		<div data-ng-show="$ctrl.objectFitPreset === $ctrl.positionPresets[ $ctrl.positionPresets.length - 1 ].value">
+			<label>
+				Advanced image position
+				<input
+					type="text"
+					data-ng-model="$ctrl.ctrlPnlSvcData.imageProjected.objectPosition"
+				/>
+			</label>
+		</div>
+	</fieldset>
+</form>

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA;IACK;EACJ,MAAM,EAAE,CAAC;EACT,QAAQ,EAAE,MAAM;EAChB,OAAO,EAAE,CAAC;;;AAGX,iBAAkB;EACjB,OAAO,EAAE,KAAK;;AAEd,qBAAI;EACH,MAAM,EAAE,KAAK;EACb,KAAK,EAAE,KAAK",
+"sources": ["../projection-window/projection-window.scss"],
+"names": [],
+"file": "projection-window.css"
+}

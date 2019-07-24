@@ -1,0 +1,281 @@
+//#region Reset
+* {
+	box-sizing: border-box;
+	outline: 0;
+}
+
+body {
+	user-select: none;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial,
+		sans-serif;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+	margin: 0;
+	padding: 0;
+	vertical-align: baseline;
+}
+
+i,
+em {
+	font-style: normal;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+input,
+select,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: 100%;
+	font-family: inherit;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+a,
+a:visited {
+	text-decoration: none;
+	color: #333;
+}
+
+button {
+	cursor: pointer;
+
+	&:disabled {
+		cursor: default;
+	}
+}
+//#endregion
+
+//#region Custom style for scroll bar
+/* https://css-tricks.com/custom-scrollbars-in-webkit/ */
+::-webkit-scrollbar {
+	height: 4px;
+	width: 4px;
+}
+
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-track:horizontal,
+::-webkit-scrollbar-thumb:horizontal {
+	margin: 0 10px;
+}
+
+::-webkit-scrollbar-track:vertical,
+::-webkit-scrollbar-thumb:vertical {
+	margin: 10px 0;
+}
+
+::-webkit-scrollbar-track {
+	background-color: rgba(140, 140, 140, 0.3);
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: rgba(140, 140, 140, 0.6);
+}
+
+:hover::-webkit-scrollbar-thumb {
+	background-color: rgba(90, 90, 90, 0.9);
+}
+//#endregion
+
+//#region Alerts
+.alert {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+
+	h4 {
+		margin-top: 0;
+		color: inherit;
+	}
+
+	// .alert-link {
+	//   font-weight: bold;
+	// }
+
+	// > p,
+	// > ul {
+	//   margin-bottom: 0;
+	// }
+
+	// > p + p {
+	//   margin-top: 5px;
+	// }
+
+	.close {
+		-webkit-appearance: none;
+		background: 0 0;
+		border: 0;
+		font-size: 21px;
+		font-weight: 700;
+		line-height: 1;
+		opacity: 0.2;
+		padding: 0;
+		text-shadow: 0 1px 0 #fff;
+
+		&:hover,
+		&:focus {
+			opacity: 0.75;
+		}
+	}
+}
+
+.alert-dismissible {
+	padding-right: 35px;
+	position: relative;
+
+	.close {
+		color: inherit;
+		position: absolute;
+		right: 8px;
+		top: 2px;
+	}
+}
+
+@mixin alert-variant($background, $border, $text-color) {
+	color: $text-color;
+	background-color: $background;
+	border-color: $border;
+
+	hr {
+		border-top-color: darken($border, 5%);
+	}
+
+	.alert-link {
+		color: darken($text-color, 10%);
+	}
+}
+
+.alert-success {
+	$bg-color: #dff0d8;
+	@include alert-variant($bg-color, darken($bg-color, 5%), #3c763d);
+}
+
+.alert-info {
+	$bg-color: #d9edf7;
+	@include alert-variant($bg-color, darken($bg-color, 7%), #31708f);
+}
+
+.alert-warning {
+	$bg-color: #fcf8e3;
+	@include alert-variant($bg-color, darken($bg-color, 5%), #8a6d3b);
+}
+
+.alert-danger {
+	$bg-color: #f2dede;
+	@include alert-variant($bg-color, darken($bg-color, 5%), #a94442);
+}
+//#endregion
+
+//#region Helper classes
+.no-pointer-events-at-children {
+	* {
+		pointer-events: none;
+	}
+}
+//#endregion
+
+//#region Buttons
+.btn-icon {
+	background-color: transparent;
+	border: 0;
+	line-height: 1.2em;
+	min-height: 1.2em;
+	min-width: 1.2em;
+	text-align: center;
+	text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.7);
+}
+//#endregion
+
+//#region Toggle
+.toggle-box {
+	display: inline-block;
+	height: 17px;
+	position: relative;
+	vertical-align: middle;
+	width: 30px;
+
+	input {
+		height: 100%;
+		opacity: 0;
+		position: absolute;
+		width: 100%;
+		z-index: 2;
+	}
+
+	.slider {
+		background-color: #ccc;
+		height: 100%;
+		position: absolute;
+		transition: 0.4s;
+		width: 100%;
+		z-index: 1;
+
+		&:before {
+			content: "";
+			position: absolute;
+			height: 75%;
+			width: 43.3%;
+			background-color: white;
+			top: 0;
+			bottom: 0;
+			margin: auto;
+			transform: translateX(25%);
+			transition: 0.4s;
+		}
+	}
+
+	input:checked + .slider {
+		background-color: #2196f3;
+
+		&:before {
+			transform: translateX(108%);
+		}
+	}
+
+	input:focus + .slider {
+		box-shadow: 0 0 1px #2196f3;
+	}
+}
+//#endregion

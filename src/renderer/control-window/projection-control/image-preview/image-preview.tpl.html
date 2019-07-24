@@ -1,0 +1,18 @@
+<div
+	id="screenFrame"
+	class="screen-frame"
+	data-ng-style="{
+		'height': $ctrl.canvasHeight,
+		'width': $ctrl.canvasWidth
+	}"
+>
+	<div id="screenCanvas" class="screen-canvas">
+		<img
+			data-ng-attr-src="{{ $ctrl.ctrlPnlSvcData.imageProjected.src }}"
+			data-ng-style="{
+				'object-fit': $ctrl.ctrlPnlSvcData.imageProjected.objectFit,
+				'object-position': $ctrl.ctrlPnlSvcData.imageProjected.objectPosition,
+			}"
+		/>
+	</div>
+</div>

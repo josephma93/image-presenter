@@ -1,0 +1,45 @@
+{
+    "version": 3,
+    "file": "projection-window.js",
+    "sources": [
+        "../projection-window/projection-canvas/projection-canvas.module.js",
+        "../projection-window/projection-window.js",
+        "../projection-window/projection-canvas/projection-canvas.component.js",
+        "../projection-window/projection-canvas/projection-canvas.controller.js"
+    ],
+    "names": [
+        "angular",
+        "module",
+        "decorator",
+        "decorateRootScope",
+        "$delegate",
+        "__proto__",
+        "safeApply",
+        "safeApplyChange",
+        "expression",
+        "$$phase",
+        "$evalAsync",
+        "$apply",
+        "component",
+        "controller",
+        "templateUrl",
+        "ProjectionCanvasCtrl",
+        "$scope",
+        "vm",
+        "ipcRenderer",
+        "electron",
+        "imageProjected",
+        "$onInit",
+        "_setProjectedImage",
+        "event",
+        "send",
+        "on"
+    ],
+    "sourcesContent": [
+        "angular.module( 'app.projectionCanvas', [\n]);\n",
+        "angular.module( 'app', [\n\t'app.projectionCanvas',\n])\n\t.decorator( '$rootScope', function decorateRootScope( $delegate ) {\n\t\t$delegate.__proto__.safeApply = function safeApplyChange( expression ) {\n\t\t\tif ( $delegate.$$phase ) {\n\t\t\t\tthis.$evalAsync( expression );\n\t\t\t} else {\n\t\t\t\tthis.$apply( expression );\n\t\t\t}\n\t\t};\n\t\treturn $delegate;\n\t});\n",
+        "angular.module( 'app.projectionCanvas' )\n\t.component( 'projectionCanvas', {\n\t\tcontroller: 'ProjectionCanvasController',\n\t\ttemplateUrl: 'projection-canvas/projection-canvas.tpl.html',\n\t});\n",
+        "angular.module( 'app.projectionCanvas' )\n\t.controller( 'ProjectionCanvasController', [\n\t\t'$scope',\n\n\t\tfunction ProjectionCanvasCtrl(\n\t\t\t$scope\n\t\t) {\n\t\t\tconst vm = this,\n\t\t\t\t{ ipcRenderer } = electron;\n\n\t\t\tvm.imageProjected = null;\n\t\t\tvm.$onInit = $onInit;\n\n\t\t\tfunction _setProjectedImage( event, imageProjected ) {\n\t\t\t\t$scope.safeApply(() => {\n\t\t\t\t\tvm.imageProjected = imageProjected;\n\t\t\t\t});\n\t\t\t}\n\n\t\t\tfunction $onInit() {\n\t\t\t\tipcRenderer.send( 'projectionCanvasInitialized' );\n\t\t\t}\n\n\t\t\tipcRenderer.on( 'setProjectedImage', _setProjectedImage );\n\t\t}\n\t]);\n"
+    ],
+    "mappings": "aAAAA,OAAO,CAACC,MAAR,CAAgB,sBAAhB,CAAwC,EAAxC,E;aCAAD,OAAO,CAACC,MAAR,CAAgB,KAAhB,CAAuB,CACtB,sBADsB,CAAvB,EAGEC,SAHF,CAGa,YAHb,CAG2B,QAASC,kBAAT,CAA4BC,SAA5B,CAAwC,CACjEA,SAAS,CAACC,SAAV,CAAoBC,SAApB,CAAgC,QAASC,gBAAT,CAA0BC,UAA1B,CAAuC,CACtE,GAAKJ,SAAS,CAACK,OAAf,CAAyB,CACxB,KAAKC,UAAL,CAAiBF,UAAjB,CACA,CAFD,IAEO,CACN,KAAKG,MAAL,CAAaH,UAAb,CACA,CACD,CAND,CAOA,MAAOJ,UACP,CAZF,E;aCAAJ,OAAO,CAACC,MAAR,CAAgB,sBAAhB,EACEW,SADF,CACa,kBADb,CACiC,CAC/BC,UAAU,CAAE,4BADmB,CAE/BC,WAAW,CAAE,8CAFkB,CADjC,E;aCAAd,OAAO,CAACC,MAAR,CAAgB,sBAAhB,EACEY,UADF,CACc,4BADd,CAC4C,CAC1C,QAD0C,CAG1C,QAASE,qBAAT,CACCC,MADD,CAEE,CACD,KAAMC,GAAE,CAAG,IAAX,CACC,CAAEC,WAAF,EAAkBC,QADnB,CAGAF,EAAE,CAACG,cAAH,CAAoB,IAApB,CACAH,EAAE,CAACI,OAAH,CAAaA,OAAb,CAEA,QAASC,mBAAT,CAA6BC,KAA7B,CAAoCH,cAApC,CAAqD,CACpDJ,MAAM,CAACV,SAAP,CAAiB,IAAM,CACtBW,EAAE,CAACG,cAAH,CAAoBA,cACpB,CAFD,CAGA,CAED,QAASC,QAAT,EAAmB,CAClBH,WAAW,CAACM,IAAZ,CAAkB,6BAAlB,CACA,CAEDN,WAAW,CAACO,EAAZ,CAAgB,mBAAhB,CAAqCH,kBAArC,CACA,CAvByC,CAD5C,E"
+}

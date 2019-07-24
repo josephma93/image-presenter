@@ -1,0 +1,15 @@
+html,
+body {
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+}
+
+projection-canvas {
+	display: block;
+
+	img {
+		height: 100vh;
+		width: 100vw;
+	}
+}

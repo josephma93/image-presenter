@@ -1,0 +1,25 @@
+<div class="floating-alerts">
+	<div class="alert alert-success"
+		 role="alert"
+		 data-ng-show="$ctrl.showDropSupportedMessage">
+		<strong>Suelta</strong> las imágenes que deseas mostrar.
+	</div>
+	<div class="alert alert-{{::alert.type}}"
+		 role="alert"
+		 data-ng-repeat="alert in $ctrl.floatingAlerts track by $index"
+		 data-ng-class="{
+			 'alert-dismissible': alert.isDismissible,
+		 }">
+		<button type="button"
+				class="close"
+				data-dismiss="alert"
+				aria-label="Close"
+				data-ng-if="::alert.isDismissible"><span aria-hidden="true">&times;</span></button>
+		<ng-bind-html data-ng-bind-html="alert.HTMLMessage"></ng-bind-html>
+	</div>
+</div>
+<div class="projection-control-layout">
+	<image-preview></image-preview>
+	<image-thumbnails></image-thumbnails>
+	<configuration-panel></configuration-panel>
+</div>

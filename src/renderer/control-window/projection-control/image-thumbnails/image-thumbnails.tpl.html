@@ -1,0 +1,15 @@
+<div id="scrollableArea">
+	<ul id="thumbnailList">
+		<li draggable="true"
+			data-ng-repeat="imageForProjection in $ctrl.imagesToProject track by $index">
+			<button type="button"
+					class="btn-icon"
+					title="Remove"
+					data-ng-click="$ctrl.removeImageForProjection(imageForProjection)">
+				&times;
+			</button>
+			<img data-ng-click="$ctrl.thumbnailClicked( imageForProjection )"
+				 data-ng-attr-src="{{imageForProjection.src}}">
+		</li>
+	</ul>
+</div>

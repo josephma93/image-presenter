@@ -1,0 +1,5 @@
+"use strict";angular.module("app.projectionCanvas",[]);
+"use strict";angular.module("app",["app.projectionCanvas"]).decorator("$rootScope",function decorateRootScope($delegate){$delegate.__proto__.safeApply=function safeApplyChange(expression){if($delegate.$$phase){this.$evalAsync(expression)}else{this.$apply(expression)}};return $delegate});
+"use strict";angular.module("app.projectionCanvas").component("projectionCanvas",{controller:"ProjectionCanvasController",templateUrl:"projection-canvas/projection-canvas.tpl.html"});
+"use strict";angular.module("app.projectionCanvas").controller("ProjectionCanvasController",["$scope",function ProjectionCanvasCtrl($scope){const vm=this,{ipcRenderer}=electron;vm.imageProjected=null;vm.$onInit=$onInit;function _setProjectedImage(event,imageProjected){$scope.safeApply(()=>{vm.imageProjected=imageProjected})}function $onInit(){ipcRenderer.send("projectionCanvasInitialized")}ipcRenderer.on("setProjectedImage",_setProjectedImage)}]);
+//# sourceMappingURL=projection-window.js.map
